@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../css/popup.css" />
+  </head>
+  <body>
+    <h1>
+      <span style="color: rgb(64, 0, 199)">Coplit</span> to
+      <span style="color: #24292f">Github</span>
+    </h1>
+    <p>made with 🔥 by Donghun Seol, Duhoon Kang</p>
+    <p>
+      <a href="https://github.com/Coplit-To-Github/CoplitToGithub"
+        >https://github.com/Coplit-To-Github/CoplitToGithub</a
+      >
+    </p>
+    <div id="main" class="container">
+      <hr />
+      <div id="disclaimer">
+        <p>코플릿 코드를 깃헙에 자동으로 커밋해주는 크롬 익스텐션 입니다.</p>
+        <p>깃허브 api를 이용하므로, 깃헙 아이디와 accessToken이 필요합니다.</p>
+        <p>아래에 깃헙 아이디와 accessToken을 입력하고 저장버튼을 눌러주세요</p>
+        <p>모든 요청과 데이터는 로컬환경에서 처리됩니다.</p>
+
+        <p>
+          배포후 의견을 수렴하여 OAuth로 익스텐션에서 바로 로그인 하는 기능을
+          구현해볼 예정입니다.
+        </p>
+        <p>
+          이후에도 능력이 된다면 백준과 프로그래머스 연동도 구현해보고 싶습니다.
+        </p>
+      </div>
+      <hr />
+      <div id="form">
+        <h3>👇 이곳에 정보를 입력하세요 👇</h3>
+        <form action="">
+          <input
+            type="text"
+            name=""
+            id="userName"
+            placeholder="Github ID"
+            required="true"
+          />
+          <input
+            type="text"
+            name=""
+            id="accessToken"
+            placeholder="Github Access Token"
+            required="true"
+          />
+          <button type="submit" id="saveBtn">save</button>
+        </form>
+      </div>
+      <div id="status">
+        <h3 id="health"></h3>
+        <p></p>
+      </div>
+    </div>
+  </body>
+  <script src="../scripts/popup.js"></script>
+</html>
