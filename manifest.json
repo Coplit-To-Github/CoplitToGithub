@@ -14,7 +14,7 @@
   "content_scripts": [
     {
       "js": ["scripts/content.js"],
-      "matches": ["https://urclass.codestates.com/codeproblem/*"]
+      "matches": ["https://urclass.codestates.com/*"]
     }
   ],
   "background": {
