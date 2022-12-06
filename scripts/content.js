@@ -1,21 +1,17 @@
-const main = async () => {
+const makeGitHubBtn = ()=>{
   const url = new URL(window.location.href);
   const problemHash = url.pathname.split('/')[2];
-
+  
   const btnGroup = document.querySelector('div.item.end');
 
   const githubBtn = document.createElement('button');
   githubBtn.textContent = 'Commit To Github';
-  githubBtn.style.backgroundColor = '#ff9900';
-  githubBtn.style.color = 'white';
-  githubBtn.style.height = 'white';
-
-  githubBtn.style.padding = '10px';
-  githubBtn.style.borderRadius = '10px';
-  githubBtn.style.margin = '0px 10px';
+  githubBtn.style.cssText = 
+    'background-color : #ff9900; font-size: 15px; fontWeight: 500px; color: white;'
+    + 'border: none; padding: 10px 24px; border-radius: 6px; margin: 0px 10px;';
   githubBtn.id = 'githubBtn';
 
-  btnGroup.appendChild(githubBtn);
+  btnGroup.appendChild(githubBtn);  
 
   githubBtn.addEventListener('click', async () => {
     const scoreText = document.querySelector('div.codeproblem-console-content > div > div')?.textContent;
@@ -36,15 +32,20 @@ const main = async () => {
       alert(response.message);
       alert('커밋 완료!');
     });
-  });
-};
+  })
+}
 
-main();
+setTimeout(()=>{makeGitHubBtn()},0);
 
-setInterval(() => {
-  if (!document.getElementById('githubBtn') && window.location.href.includes('codeproblem')) {
-    main();
-  }
-}, 2000);
+window.addEventListener("locationchange", ()=>{
+  setTimeout(()=>{
+    if (document.getElementById("githubBtn")){
+      const oldBtn = document.getElementById("githubBtn");
+      oldBtn.remove();
+    }
+    
+    makeGitHubBtn();
+  },0);
+})
 
 // https://stackoverflow.com/questions/3522090/event-when-window-location-href-changes
