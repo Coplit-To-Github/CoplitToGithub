@@ -1,5 +1,8 @@
 const makeGitHubBtn = ()=>{
   const url = new URL(window.location.href);
+
+  if (!url.pathname.match(/codeproblem/)) return;
+
   const problemHash = url.pathname.split('/')[2];
   
   const btnGroup = document.querySelector('div.item.end');
