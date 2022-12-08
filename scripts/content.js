@@ -25,6 +25,7 @@ const makeGitHubBtn = ()=>{
     const fileName = `${document.querySelector('span.problem-title').textContent}.js`;
     const fileContent = localStorage.getItem(problemHash);
 
+    chrome.action.setPopup('/static/popup_commit.html');
     // TODO 커밋 메시지 입력 가능하게 만든다.
     const commitMessage = '';
 
