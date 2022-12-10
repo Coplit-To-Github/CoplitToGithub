@@ -13,6 +13,7 @@
   },
   "content_scripts": [
     {
+      "css": ["css/githubBtn.css"],
       "js": ["scripts/content.js"],
       "matches": ["https://urclass.codestates.com/*"]
     }

@@ -9,9 +9,6 @@ const makeGitHubBtn = ()=>{
 
   const githubBtn = document.createElement('button');
   githubBtn.textContent = 'Commit To Github';
-  githubBtn.style.cssText = 
-    'background-color : #ff9900; font-size: 15px; fontWeight: 500px; color: white;'
-    + 'border: none; padding: 10px 24px; border-radius: 6px; margin: 0px 10px;';
   githubBtn.id = 'githubBtn';
 
   btnGroup.appendChild(githubBtn);  
