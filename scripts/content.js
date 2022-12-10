@@ -9,6 +9,7 @@ const makeGitHubBtn = ()=>{
 
   const githubBtn = document.createElement('button');
   githubBtn.textContent = 'Commit To Github';
+  githubBtn.className = "btn";
   githubBtn.id = 'githubBtn';
 
   btnGroup.appendChild(githubBtn);  
@@ -24,6 +25,10 @@ const makeGitHubBtn = ()=>{
 
     // TODO 커밋 메시지 입력 가능하게 만든다.
     const commitMessage = '';
+    
+    // // TEST명령줄 (나중에 지우세요)
+    // const modalContainer = document.querySelector(".modal-container")
+    // modalContainer.classList.toggle("activate");
 
     alert('해당 코드를 커밋합니다.');
     chrome.runtime.sendMessage({
@@ -35,6 +40,57 @@ const makeGitHubBtn = ()=>{
   })
 }
 
+
+const makeGitHubModal = ()=>{
+  const modalContainer = document.createElement("div");
+  const modal = document.createElement("div");
+  const commitMessageInput = document.createElement("input");
+  const btnGroup = document.createElement("div");
+  const cancelBtn = document.createElement("button");
+  const commitBtn = document.createElement("button");
+
+  // Commit Message Input
+  commitMessageInput.className = "commit-message-input";
+  commitMessageInput.name = "commit-message";
+  commitMessageInput.placeholder = "커밋 메시지를 입력해주세요.";
+
+  // Buttons
+  btnGroup.className = "btn-group";
+
+  cancelBtn.className = "btn";
+  cancelBtn.textContent = "취소";
+
+  commitBtn.className = "btn btn-primary"
+  commitBtn.textContent = "커밋";
+
+  btnGroup.append(cancelBtn, commitBtn);
+
+  // Modal
+  modalContainer.className = "modal-container";
+  modal.className= "modal";
+
+  modal.append(commitMessageInput, btnGroup);
+  modalContainer.append(modal);
+
+  // Inject modal to document;
+  document.body.prepend(modalContainer);
+
+
+  // Handlers
+  const initInput = (input)=>{
+    commitMessageInput.value = "";
+  }
+
+  cancelBtn.addEventListener("click", ()=>{
+    modalContainer.classList.toggle("activate");
+    initInput();
+  })
+}
+
+
+//=================================
+//       Make GitHubBtn
+//=================================
 setTimeout(()=>{makeGitHubBtn()},0);
 
 window.addEventListener("locationchange", ()=>{
@@ -47,5 +103,7 @@ window.addEventListener("locationchange", ()=>{
     makeGitHubBtn();
   },0);
 })
+
+makeGitHubModal();
 
 // https://stackoverflow.com/questions/3522090/event-when-window-location-href-changes

@@ -1,0 +1,75 @@
+:root{
+    --btn-color : #DDDDDD;
+    --btn-primary-color : #ff9900;
+    --btn-primary-color-hover : #DD7700;
+    --btn-color-hover : #AAAAAA;
+    --modal-color : #FFFFFF;
+}
+
+#githubBtn {
+    background-color : #ff9900; 
+    color: white;
+    margin: 0px 10px;   
+}
+
+.modal-container{
+    display:none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index:100;
+}
+
+.modal-container.activate{
+    display:block;
+}
+
+.modal {
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--modal-color);
+    box-shadow: 0 0 2px;
+    border-radius: 6px;
+    padding: 2rem;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.commit-message-input{
+    font-size: 15px;
+    padding: 10px 12px;
+}
+
+.btn-group{
+    width: 100%;
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.btn {
+    background-color: var(--btn-color);
+    padding: 10px 24px; 
+    border: none;
+    border-radius: 6px; 
+    font-size: 15px; 
+    font-weight: 500px; 
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: var(--btn-color-hover);
+}
+
+.btn.btn-primary{
+    background-color : var(--btn-primary-color);
+    color: white;
+}
+
+.btn.btn-primary:hover{
+    background-color: var(--btn-primary-color-hover);
+}
+
