@@ -5,9 +5,9 @@ on:
   push:
     # Triggers workflow only if code is pushed to master/main branch
     branches: [ master, main ]
-    paths:
-      # Triggers workflow only if manifest content is changed
-      - 'manifest.json'
+    # paths:
+    #   # Triggers workflow only if manifest content is changed
+    #   - 'manifest.json'
 
 jobs:
   Chrome:
@@ -17,17 +17,18 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Pack extension
-      uses: TheDoctor0/zip-release@0.4.1
+      uses: TheDoctor0/zip-release@main
       with:
         type: 'zip'
-      	filename: 'Package.zip'
+      	filename: 'release.zip'
       	exclusions: '.git/* .vscode/* .github/* *.md'
 
-    - name: Drop artifacts
+    - name: Upload Release
       uses: actions/upload-artifact@v2
       with:
       	name: 'Chrome Artifacts'
-      	path: ./Package.zip
+      	path: ./release.zip
+
   build:
     name: Publish webextension
     runs-on: ubuntu-latest
