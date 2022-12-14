@@ -1,0 +1,50 @@
+name: Publish	# Name of your workflow
+
+on:
+  workflow_dispatch:	# Allows you to manually trigger workflow
+  push:
+    # Triggers workflow only if code is pushed to master/main branch
+    branches: [ master, main ]
+    paths:
+      # Triggers workflow only if manifest content is changed
+      - 'manifest.json'
+
+jobs:
+  Chrome:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Pack extension
+      uses: TheDoctor0/zip-release@0.4.1
+      with:
+      	filename: ./Package.zip
+      	exclusions: '.git/* .vscode/* .github/* *.md'
+
+    - name: Drop artifacts
+      uses: actions/upload-artifact@v2
+      with:
+      	name: 'Chrome Artifacts'
+      	path: ./Package.zip
+  build:
+    name: Publish webextension
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12
+    - name: Build
+      run: |
+        npm ci
+        npm run build
+    - name: Upload & release
+      uses: mnao305/chrome-extension-upload@v4.0.0
+      with:
+        file-path: ./Package.zip
+        extension-id: dgjgjkhbfieaommgmdjlglommdhaedip
+        client-id: ${{ secrets.CLIENT_ID }}
+        client-secret: ${{ secrets.CLIENT_SECRET }}
+        refresh-token: ${{ secrets.REFRESH_TOKEN }}
