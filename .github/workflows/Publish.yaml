@@ -20,7 +20,7 @@ jobs:
       uses: TheDoctor0/zip-release@0.4.1
       with:
         type: 'zip'
-      	filename: ./Package.zip
+      	filename: 'Package.zip'
       	exclusions: '.git/* .vscode/* .github/* *.md'
 
     - name: Drop artifacts
