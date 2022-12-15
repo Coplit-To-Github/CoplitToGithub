@@ -17,12 +17,12 @@ jobs:
       - name: Build
         run: |
           npm ci
-          npm run build
+          npm run zip
       - name: Upload & release
         uses: mnao305/chrome-extension-upload@v4.0.0
         with:
-          file-path: dist/file.zip
-          extension-id: hogefuga(extension id)
+          file-path: dist/coplittogithub_1.0.0.zip
+          extension-id: dgjgjkhbfieaommgmdjlglommdhaedip
           client-id: ${{ secrets.CLIENT_ID }}
           client-secret: ${{ secrets.CLIENT_SECRET }}
           refresh-token: ${{ secrets.REFRESH_TOKEN }}

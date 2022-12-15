@@ -1,10 +1,23 @@
 {
+  "name": "coplittogithub",
+  "version": "1.0.0",
+  "description": "",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "zip": "npm-build-zip --source=src --destination=dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Coplit-To-Github/CoplitToGithub.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Coplit-To-Github/CoplitToGithub/issues"
+  },
+  "homepage": "https://github.com/Coplit-To-Github/CoplitToGithub#readme",
   "devDependencies": {
-    "eslint": "^8.29.0",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-jsx-a11y": "^6.6.1",
-    "eslint-plugin-react": "^7.31.11",
-    "eslint-plugin-react-hooks": "^4.6.0"
+    "npm-build-zip": "^1.0.3"
   }
 }
