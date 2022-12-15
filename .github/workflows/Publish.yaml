@@ -22,7 +22,7 @@ jobs:
       - name: Upload & release
         uses: mnao305/chrome-extension-upload@v4.0.0
         with:
-          file-path: dist/coplittogithub_1.0.0.zip
+          file-path: dist/coplittogithub_1.0.1.zip
           extension-id: fpdogcffloghmjkkgnaknfiflajkhccp
           client-id: ${{ secrets.CLIENT_ID }}
           client-secret: ${{ secrets.CLIENT_SECRET }}
