@@ -22,6 +22,5 @@
     "service_worker": "scripts/background.js",
     "type": "module"
   },
-  "permissions": ["storage"],
-  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsHoHAAHPZW8nhbr8FZk+VHlUdClXPMi3l+N3opjQlfxaE3/7NHjcDCI2pubIYJyn9IgioPo2PV4vNi4nkgkqmt5GsTr8ayxhkIL2a0WSue5JqdZ+9pZJ/o+5kilAvT/SXO32vkXEne+FgIGS9vf7fwzHCv0UJXPXP/g6k8qlK4Z+EczLeHy1mNl8Qr/p0VP9ToE6l6Z36wKMmATiSZwZhJKx2SXMrl/jNDFOCRZI+FudbzQs0gyhPIj9ib4cJRnuYxn2/vP9KkfRyKg5Nt8WDLu2+MLuxzMQC0oMPN+IQndGaHqxp3+11gLosVWpfBiF375BqxpNzG50S2hu5SspIwIDAQAB"
+  "permissions": ["storage"]
 }
