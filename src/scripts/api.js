@@ -25,7 +25,7 @@ const createRepo = async (repoTitle, accessToken) => {
   const url = 'https://api.github.com/user/repos';
   const data = {
     name: repoTitle,
-    type: 'private',
+    private: true,
   };
   try {
     const result = await fetch(url, {
