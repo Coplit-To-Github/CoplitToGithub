@@ -128,4 +128,4 @@ out
 .yarn/install-state.gz
 .pnp.*
 # ignore local built packages
-coplittogithub*.zip
+publish.zip

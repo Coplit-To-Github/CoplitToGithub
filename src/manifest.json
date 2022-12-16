@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Coplit To Git",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Automatically commit coplit codes to github after submission",
   "icons": {
     "16": "images/codeStates.png",
