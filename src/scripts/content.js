@@ -3,6 +3,8 @@ const makeGitHubBtn = ()=>{
 
   if (!url.pathname.match(/codeproblem/)) return;
   
+  const problemHash = url.pathname.split('/')[2];
+  
   const btnGroup = document.querySelector('div.item.end');
 
   const githubBtn = document.createElement('button');
@@ -18,8 +20,20 @@ const makeGitHubBtn = ()=>{
       alert('테스트 후에 커밋하세요!');
       return;
     }
-  
-    makeGitHubModal();
+
+    const fileName = `${document.querySelector('span.problem-title').textContent}.js`;
+    const fileContent = localStorage.getItem(problemHash);
+
+    // makeGitHubModal()
+    const commitMessage = "";
+    
+    alert('해당 코드를 커밋합니다.');
+    chrome.runtime.sendMessage({
+      action: 'Commit', fileName, fileContent, commitMessage,
+    }, (response) => {
+      alert(response.message);
+      alert("커밋 완료");
+    });
   })
 }
 
@@ -27,7 +41,7 @@ const makeGitHubBtn = ()=>{
 //            Modal
 // ==============================
 
-const makeGitHubModal = ()=>{
+const makeGitHubModal = async(getCommitMessage)=>{
   const gitModalInnerHTML =
   `
     <div class="ant-modal-mask ant-fade-enter ant-fade-enter-active">
@@ -68,7 +82,6 @@ const makeGitHubModal = ()=>{
     modalMask.classList.toggle("ant-fade-enter-active");
     modalMask.classList.toggle("ant-fade-leave");
     modalMask.classList.toggle("ant-fade-leave-active");
-    modalMask.classList.toggle("active");
     initInput();
     setTimeout(()=>{
       document.body.removeChild(gitModal);
@@ -85,22 +98,7 @@ const makeGitHubModal = ()=>{
   }
 
   const commitBtnHandler = async()=>{
-    const url = new URL(window.location.href);
-
-    const problemHash = url.pathname.split('/')[2];
-
-    const fileName = `${document.querySelector('span.problem-title').textContent}.js`;
-    const fileContent = localStorage.getItem(problemHash);
-
-    const commitMessage = commitMessageInput.value;
-
-    alert('해당 코드를 커밋합니다.');
-    await chrome.runtime.sendMessage({
-      action: 'Commit', fileName, fileContent, commitMessage,
-    }, (response) => {
-      alert(response.message);
-      removeModal();
-    });
+    return getCommitMessage(commitMessageInput.value);
   }
 
   // Register EventListener
