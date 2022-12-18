@@ -4,6 +4,8 @@ on:
   workflow_dispatch:
   push:
     branches: [master, main]
+    paths:
+      - 'manifest.json'
 
 jobs:
   build:
