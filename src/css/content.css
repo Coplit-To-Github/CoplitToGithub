@@ -1,0 +1,76 @@
+:root{
+    --btn-color : #DDDDDD;
+    --btn-primary-color : #ff9900;
+    --btn-primary-color-hover : #DD7700;
+    --btn-color-hover : #AAAAAA;
+    --modal-color : #FFFFFF;
+}
+
+#githubBtn {
+    background-color : #ff9900; 
+    color: white;
+    margin: 0px 10px;   
+}
+
+.activate{
+   display:block !important;;
+}
+
+.git-coplit-modal .ant-modal-wrap {
+    display:none;
+    margin: auto;
+    width: 500px;
+}
+
+.commit-message-input{
+    width:100%;
+    font-size: 15px;
+    padding: 10px 12px;
+}
+
+.btn {
+    background-color: var(--btn-color);
+    padding: 10px 24px; 
+    border: none;
+    border-radius: 6px; 
+    font-size: 15px; 
+    font-weight: 500px; 
+    cursor: pointer;
+    
+}
+
+.btn:last-child {
+    margin-right: 0;
+}
+
+.ant-btn.btn {
+    background-color: var(--btn-color);
+    padding: 10px 24px; 
+    border: none;
+    height: auto;
+    border-radius: 6px; 
+    font-size: 15px; 
+    font-weight: 500px; 
+    cursor: pointer;
+    margin-right: 1rem;
+}
+
+.git-coplit-modal .btn-group{
+    margin-top: 20px;
+    display: flex;
+    justify-content: end;
+}
+
+.btn:hover {
+    background-color: var(--btn-color-hover);
+}
+
+.btn.btn-primary{
+    background-color : var(--btn-primary-color);
+    color: white;
+}
+
+.btn.btn-primary:hover{
+    background-color: var(--btn-primary-color-hover);
+}
+
