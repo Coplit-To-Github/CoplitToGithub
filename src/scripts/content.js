@@ -3,8 +3,6 @@ const makeGitHubBtn = ()=>{
 
   if (!url.pathname.match(/codeproblem/)) return;
   
-  const problemHash = url.pathname.split('/')[2];
-  
   const btnGroup = document.querySelector('div.item.end');
 
   const githubBtn = document.createElement('button');
@@ -12,7 +10,7 @@ const makeGitHubBtn = ()=>{
   githubBtn.className = "btn";
   githubBtn.id = 'githubBtn';
 
-  btnGroup.appendChild(githubBtn);  
+  btnGroup.appendChild(githubBtn);
 
   githubBtn.addEventListener('click', async () => {
     const scoreText = document.querySelector('div.codeproblem-console-content > div > div')?.textContent;
@@ -21,19 +19,7 @@ const makeGitHubBtn = ()=>{
       return;
     }
 
-    const fileName = `${document.querySelector('span.problem-title').textContent}.js`;
-    const fileContent = localStorage.getItem(problemHash);
-
-    // makeGitHubModal()
-    const commitMessage = "";
-    
-    alert('해당 코드를 커밋합니다.');
-    chrome.runtime.sendMessage({
-      action: 'Commit', fileName, fileContent, commitMessage,
-    }, (response) => {
-      alert(response.message);
-      alert("커밋 완료");
-    });
+    makeGitHubModal();
   })
 }
 
@@ -41,7 +27,7 @@ const makeGitHubBtn = ()=>{
 //            Modal
 // ==============================
 
-const makeGitHubModal = async(getCommitMessage)=>{
+const makeGitHubModal = async()=>{
   const gitModalInnerHTML =
   `
     <div class="ant-modal-mask ant-fade-enter ant-fade-enter-active">
@@ -98,7 +84,23 @@ const makeGitHubModal = async(getCommitMessage)=>{
   }
 
   const commitBtnHandler = async()=>{
-    return getCommitMessage(commitMessageInput.value);
+    const url = new URL(window.location.href);
+
+    const problemHash = url.pathname.split('/')[2];
+
+    const fileName = `${document.querySelector('span.problem-title').textContent}.js`;
+    const fileContent = localStorage.getItem(problemHash);
+
+    const commitMessage = commitMessageInput.value;
+    
+    alert('해당 코드를 커밋합니다.');
+    await chrome.runtime.sendMessage({
+      action: 'Commit', fileName, fileContent, commitMessage,
+    }, (response) => {
+      removeModal();
+      alert(response.message);
+      alert("커밋 완료");
+    });
   }
 
   // Register EventListener
@@ -118,6 +120,8 @@ window.addEventListener("locationchange", ()=>{
       const oldBtn = document.getElementById("githubBtn");
       oldBtn.remove();
     }
+    
+    
     
     makeGitHubBtn();
   },0);
