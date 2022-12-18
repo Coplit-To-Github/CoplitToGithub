@@ -16,24 +16,24 @@ chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
       console.log(auth);
       const { accessToken } = auth.auth;
       const { userName } = auth.auth;
-      console.log('access token and user name found!', accessToken, userName);
       const repoTitle = 'coplit'; // TODO make variable
       const { fileName, fileContent, commitMessage } = request;
-      const isRepoExists = await checkRepoExists(userName, repoTitle);
+      const isRepoExists = await checkRepoExists(userName, accessToken, repoTitle);
       if (!isRepoExists) {
         console.log('repo not exist, creating repo');
         await createRepo(repoTitle, accessToken);
       }
-      const isFileExists = await checkFileExists(userName, repoTitle, fileName);
+      const isFileExists = await checkFileExists(userName, accessToken, repoTitle, fileName);
       if (!isFileExists) {
-        console.log('file not exist, creating ne file');
-        await createNewFile(userName, repoTitle, fileName, fileContent, commitMessage, accessToken);
+        console.log('file not exist, creating new file');
+        await createNewFile(userName, accessToken, repoTitle, fileName, fileContent, commitMessage);
       } else {
-        console.log('file exists, creating new commit');
-        await createCommit(userName, repoTitle, fileName, fileContent, commitMessage, accessToken);
+        console.log('file exists, update existing commit');
+        await createCommit(userName, accessToken, repoTitle, fileName, fileContent, commitMessage);
       }
       console.log('all process done');
-      return sendResponse({ message: 'Commit to Github is Done' });
+      sendResponse({ message: 'Commit to Github is Done' });
+      return true;
     } catch (err) {
       console.error(err);
       return false;

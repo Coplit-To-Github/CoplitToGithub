@@ -1,11 +1,12 @@
 /* eslint-disable max-len */
-const checkRepoExists = async (userName = 'atoye1', repoTitle = 'coplit') => {
+const checkRepoExists = async (userName, accessToken, repoTitle) => {
   const url = `https://api.github.com/repos/${userName}/${repoTitle}`;
   try {
     const result = await fetch(url, {
       method: 'GET',
       headers: {
         Accept: 'application/vnd.github+json',
+        Authorization: `Bearer ${accessToken}`,
       },
     });
     const resultData = await result.json();
@@ -21,7 +22,7 @@ const checkRepoExists = async (userName = 'atoye1', repoTitle = 'coplit') => {
   }
 };
 
-const createRepo = async (repoTitle, accessToken) => {
+const createRepo = async (accessToken, repoTitle) => {
   const url = 'https://api.github.com/user/repos';
   const data = {
     name: repoTitle,
@@ -42,13 +43,14 @@ const createRepo = async (repoTitle, accessToken) => {
   }
 };
 
-const checkFileExists = async (userName = 'atoye1', repoTitle = 'coplit', fileName = '05_tiling.js') => {
+const checkFileExists = async (userName, accessToken, repoTitle, fileName) => {
   const url = `https://api.github.com/repos/${userName}/${repoTitle}/contents/${fileName}`;
   try {
     const result = await fetch(url, {
       method: 'GET',
       headers: {
         Accept: 'application/vnd.github+json',
+        Authorization: `Bearer ${accessToken}`,
       },
     });
     const checkResult = await result.json();
@@ -63,7 +65,7 @@ const checkFileExists = async (userName = 'atoye1', repoTitle = 'coplit', fileNa
   }
 };
 
-const createNewFile = async (userName, repoTitle, fileName, fileContent, commitMessage, accessToken) => {
+const createNewFile = async (userName, accessToken, repoTitle, fileName, fileContent, commitMessage) => {
   const url = `https://api.github.com/repos/${userName}/${repoTitle}/contents/${fileName}`;
   const encodedContent = btoa(unescape(encodeURIComponent(fileContent)));
   const data = {
@@ -90,7 +92,7 @@ const createNewFile = async (userName, repoTitle, fileName, fileContent, commitM
   }
 };
 
-const createCommit = async (userName, repoTitle, fileName, fileContent, commitMessage, accessToken) => {
+const createCommit = async (userName, accessToken, repoTitle, fileName, fileContent, commitMessage) => {
   const checkingUrl = `https://api.github.com/repos/${userName}/${repoTitle}/commits`;
   try {
     const checkResult = await fetch(checkingUrl, {
